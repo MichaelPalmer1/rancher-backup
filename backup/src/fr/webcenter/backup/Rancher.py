@@ -76,16 +76,16 @@ class Rancher(object):
         :return list: the list of Rancher stack
         """
 
-        listEnvironments = self._client.list('environment')
-        targetListEnvironment = []
-        for environment in listEnvironments:
-            logger.debug("Grab setting for stack %s", environment['name'])
-            environment['settings'] = self._client.action(environment, 'exportconfig')
-            targetListEnvironment.append(environment)
+        listStacks = self._client.list('stack')
+        targetListStack = []
+        for stack in listStacks:
+            logger.debug("Grab setting for stack %s", stack['name'])
+            stack['settings'] = self._client.action(stack, 'exportconfig')
+            targetListStack.append(stack)
 
 
-        logger.debug("Return: %s", targetListEnvironment)
+        logger.debug("Return: %s", targetListStack)
 
-        return targetListEnvironment
+        return targetListStack
 
 
